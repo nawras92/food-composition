@@ -46,7 +46,49 @@
               </select>
              <button class="btn btn-outline-primary btn-lg my-5" name="submit" type="submit">Search</button>
         </form>
-    </div>
+      </div>
+
+
+    <?php
+
+     $url = "https://api.nal.usda.gov/ndb/search/?format=json&api_key=DEMO_KEY&q=butter";
+     $curl = curl_init();
+     curl_setopt($curl,CURLOPT_URL,$url);
+     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+     $result = curl_exec($curl);
+     curl_close($curl);
+
+     $json = json_decode($result);
+     ?>
+
+     <div class="row">
+      <div class="col-md-12">
+        <table class="table table-striped table-responsive">
+         <thead>
+           <tr>
+             <th>ID</th>
+             <th>Name</th>
+             <th>Group</th>
+             <th>Company</th>
+           </tr>
+         </thead>
+         <tbody>
+           <?php foreach($json->list->item as $item): ?>
+             <tr>
+              <td><?php echo $item->ndbno; ?></td>
+              <td><?php echo $item->name; ?> </td>
+              <td><?php echo $item->group;?></td>
+              <td><?php echo $item->manu;?></td>
+             </tr>
+           <?php endforeach;?>
+         </tbody>
+        </table>
+      </div>
+     </div>
+
+
+
+</div>
 
 
     <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
