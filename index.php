@@ -60,14 +60,18 @@
          $search_query = "";
        }
 
-       $url = "https://api.nal.usda.gov/ndb/search/?format=json&api_key=DEMO_KEY&q=$search_query";
+       $food_group = isset($_POST['foodGroup']) ? $_POST['foodGroup'] : "";
+       $data_source = isset($_POST['dataSource']) ? $_POST['dataSource'] : "";
+
+       $url = "https://api.nal.usda.gov/ndb/search/?format=json&api_key=DEMO_KEY&q=$search_query&fg=$food_group&ds=$data_source";
        $curl = curl_init();
        curl_setopt($curl,CURLOPT_URL,$url);
        curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
        $result = curl_exec($curl);
        curl_close($curl);
-
        $json = json_decode($result);
+
+       if (!isset($json->errors)):
      ?>
 
      <div class="row">
@@ -94,6 +98,11 @@
         </table>
       </div>
      </div>
+   <?php else: ?>
+     <?php foreach($json->errors->error as $error): ?>
+       <?php echo $error->message; ?>
+     <?php endforeach; ?>
+   <?php endif; // !isset($json->errors) ?>
    <?php endif; // isset($_POST['submit'])?>
 
 
