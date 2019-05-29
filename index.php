@@ -13,7 +13,7 @@
           <p class="lead">Write the food item name in the search box</p>
           <form class="form-inline mt-2 mt-md-0 justify-content-center" method="POST">
               <input class="form-control form-control-lg mr-sm-2"
-                     value=""
+                     value="<?php if(isset($_POST['searchTerm'])){echo $_POST['searchTerm'];} ?>"
                      name="searchTerm" type="text" placeholder="Search Term: butter">
               <select id="foodGroup" name="foodGroup" class="form-control form-control-lg mr-sm-2">
                 <option value="1100">Vegetables and Vegetable Products</option>
@@ -51,14 +51,23 @@
 
     <?php
 
-     $url = "https://api.nal.usda.gov/ndb/search/?format=json&api_key=DEMO_KEY&q=butter";
-     $curl = curl_init();
-     curl_setopt($curl,CURLOPT_URL,$url);
-     curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
-     $result = curl_exec($curl);
-     curl_close($curl);
+     if (isset($_POST['submit'])):
 
-     $json = json_decode($result);
+       if (isset($_POST['searchTerm'])){
+          $search_query = $_POST['searchTerm'];
+          $search_query = str_replace(' ','%20', $search_query);
+       }else{
+         $search_query = "";
+       }
+
+       $url = "https://api.nal.usda.gov/ndb/search/?format=json&api_key=DEMO_KEY&q=$search_query";
+       $curl = curl_init();
+       curl_setopt($curl,CURLOPT_URL,$url);
+       curl_setopt($curl, CURLOPT_RETURNTRANSFER, true);
+       $result = curl_exec($curl);
+       curl_close($curl);
+
+       $json = json_decode($result);
      ?>
 
      <div class="row">
@@ -85,6 +94,7 @@
         </table>
       </div>
      </div>
+   <?php endif; // isset($_POST['submit'])?>
 
 
 
