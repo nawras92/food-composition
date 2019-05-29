@@ -1,3 +1,5 @@
+<?php require_once('utils.php'); ?>
+
 <!DOCTYPE html>
 <html lang="en" dir="ltr">
   <head>
@@ -16,31 +18,31 @@
                      value="<?php if(isset($_POST['searchTerm'])){echo $_POST['searchTerm'];} ?>"
                      name="searchTerm" type="text" placeholder="Search Term: butter">
               <select id="foodGroup" name="foodGroup" class="form-control form-control-lg mr-sm-2">
-                <option value="1100">Vegetables and Vegetable Products</option>
-                <option value="0900">Fruits and Fruit Juices</option>
-                <option value="0100">Dairy and Egg Products</option>
-                <option value="0500">Poultry Products</option>
-                <option value="0700">Sausages and Luncheon Meats</option>
-                <option value="1300">Beef Products</option>
-                <option value="1700">Lamb, Veal, and Game Products</option>
-                <option value="2000">Cereal Grains and Pasta</option>
-                <option value="2100">Fast Foods</option>
-                <option value="2200">Meals, Entrees, and Side Dishes</option>
-                <option value="0400">Fats and Oils</option>
-                <option value="1800">Baked Products</option>
-                <option value="1600">Legumes and Legume Products</option>
-                <option value="1200">Nut and Seed Products</option>
-                <option value="1900">Sweets</option>
-                <option value="0600">Soups, Sauces, and Gravies</option>
-                <option value="0800">Breakfast Cereals</option>
-                <option value="2500">Snacks</option>
-                <option value="0200">Spices and Herbs</option>
+                <option value="1100" <?php check_selected_option('foodGroup', '1100'); ?> >Vegetables and Vegetable Products</option>
+                <option value="0900" <?php check_selected_option('foodGroup', '0900'); ?>>Fruits and Fruit Juices</option>
+                <option value="0100" <?php check_selected_option('foodGroup', '0100'); ?>>Dairy and Egg Products</option>
+                <option value="0500" <?php check_selected_option('foodGroup', '0500'); ?>>Poultry Products</option>
+                <option value="0700" <?php check_selected_option('foodGroup', '0700'); ?>>Sausages and Luncheon Meats</option>
+                <option value="1300" <?php check_selected_option('foodGroup', '1300'); ?>>Beef Products</option>
+                <option value="1700" <?php check_selected_option('foodGroup', '1700'); ?>>Lamb, Veal, and Game Products</option>
+                <option value="2000" <?php check_selected_option('foodGroup', '2000'); ?>>Cereal Grains and Pasta</option>
+                <option value="2100" <?php check_selected_option('foodGroup', '2100'); ?>>Fast Foods</option>
+                <option value="2200" <?php check_selected_option('foodGroup', '2200'); ?>>Meals, Entrees, and Side Dishes</option>
+                <option value="0400" <?php check_selected_option('foodGroup', '0400'); ?>>Fats and Oils</option>
+                <option value="1800" <?php check_selected_option('foodGroup', '1800'); ?>>Baked Products</option>
+                <option value="1600" <?php check_selected_option('foodGroup', '1600'); ?>>Legumes and Legume Products</option>
+                <option value="1200" <?php check_selected_option('foodGroup', '1200'); ?>>Nut and Seed Products</option>
+                <option value="1900" <?php check_selected_option('foodGroup', '1900'); ?>>Sweets</option>
+                <option value="0600" <?php check_selected_option('foodGroup', '0600'); ?>>Soups, Sauces, and Gravies</option>
+                <option value="0800" <?php check_selected_option('foodGroup', '0800'); ?>>Breakfast Cereals</option>
+                <option value="2500" <?php check_selected_option('foodGroup', '2500'); ?>>Snacks</option>
+                <option value="0200" <?php check_selected_option('foodGroup', '0200'); ?>>Spices and Herbs</option>
               </select>
               <select id="dataSource" name="dataSource" class="form-control form-control-lg mr-sm-2">
-                <option value="Standard%20Reference">
+                <option value="Standard%20Reference" <?php check_selected_option('dataSource', 'Standard%20Reference'); ?> >
                   Standard Reference
                 </option>
-                <option value="Branded%20Food%20Products">
+                <option value="Branded%20Food%20Products" <?php check_selected_option('dataSource', 'Branded%20Food%20Products'); ?>>
                   Branded Food Products
                 </option>
               </select>
