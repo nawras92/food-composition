@@ -18,6 +18,7 @@
                      value="<?php if(isset($_POST['searchTerm'])){echo $_POST['searchTerm'];} ?>"
                      name="searchTerm" type="text" placeholder="Search Term: butter">
               <select id="foodGroup" name="foodGroup" class="form-control form-control-lg mr-sm-2">
+                <option value="all" <?php check_selected_option('foodGroup', 'all'); ?> >All Food Groups</option>
                 <option value="1100" <?php check_selected_option('foodGroup', '1100'); ?> >Vegetables and Vegetable Products</option>
                 <option value="0900" <?php check_selected_option('foodGroup', '0900'); ?>>Fruits and Fruit Juices</option>
                 <option value="0100" <?php check_selected_option('foodGroup', '0100'); ?>>Dairy and Egg Products</option>
@@ -39,6 +40,9 @@
                 <option value="0200" <?php check_selected_option('foodGroup', '0200'); ?>>Spices and Herbs</option>
               </select>
               <select id="dataSource" name="dataSource" class="form-control form-control-lg mr-sm-2">
+                <option value="all" <?php check_selected_option('dataSource', 'all'); ?> >
+                  All Databases
+                </option>
                 <option value="Standard%20Reference" <?php check_selected_option('dataSource', 'Standard%20Reference'); ?> >
                   Standard Reference
                 </option>
@@ -62,8 +66,24 @@
          $search_query = "";
        }
 
-       $food_group = isset($_POST['foodGroup']) ? $_POST['foodGroup'] : "";
-       $data_source = isset($_POST['dataSource']) ? $_POST['dataSource'] : "";
+       if (isset($_POST['foodGroup'])){
+         $food_group = $_POST['foodGroup'];
+         if ($food_group == 'all'){
+           $food_group = "";
+         }
+       }else{
+         $food_group = "";
+       }
+
+       if (isset($_POST['dataSource'])){
+         $data_source = $_POST['dataSource'];
+         if ($data_source == 'all'){
+           $data_source = "";
+         }
+       }else{
+         $data_source = "";
+       }
+
 
        $url = "https://api.nal.usda.gov/ndb/search/?format=json&api_key=DEMO_KEY&q=$search_query&fg=$food_group&ds=$data_source";
        $curl = curl_init();
