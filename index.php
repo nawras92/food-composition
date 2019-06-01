@@ -99,8 +99,10 @@
          </thead>
          <tbody>
            <?php foreach($json->list->item as $item): ?>
+             <?php $id = $item->ndbno; ?>
+             <?php $name = $item->name; ?>
              <tr>
-              <td><?php echo $item->ndbno; ?></td>
+              <td><a href='<?php echo "item.php?id=$id&name=$name"; ?>'><?php echo $item->ndbno; ?></a></td>
               <td><?php echo $item->name; ?> </td>
               <td><?php echo $item->group;?></td>
               <td><?php echo $item->manu;?></td>

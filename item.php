@@ -2,13 +2,14 @@
 
 <div class="container">
   <div class="jumbotron mt-3 text-center">
-   <h1>Food Composition for butter ------</h1>
+   <h1>Food Composition for: <?php echo $_GET['name']; ?> </h1>
    <p class="lead">Here you are the food compositions of what you searched for</p>
   </div>
 
 
    <?php
-     $url = "https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=DEMO_KEY";
+     $id = $_GET['id'];
+     $url = "https://api.nal.usda.gov/ndb/reports/?ndbno=$id&type=b&format=json&api_key=DEMO_KEY";
      $curl = curl_init();
      curl_setopt($curl, CURLOPT_URL, $url);
      curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
