@@ -2,7 +2,14 @@
 
 <div class="container">
   <div class="jumbotron mt-3 text-center">
-   <h1>Food Composition for: <?php echo $_GET['name']; ?> </h1>
+   <h1><?php
+     if (isset($_GET['name'])){
+       echo "Food Composition for:" . $_GET['name'];
+     }else{
+       echo "No result found!";
+     }
+
+    ?> </h1>
    <p class="lead">Here you are the food compositions of what you searched for</p>
   </div>
 
@@ -16,6 +23,7 @@
      $result = curl_exec($curl);
      curl_close($curl);
      $json = json_decode($result);
+     if (!isset($json->errors)):
    ?>
 
    <div class="row">
@@ -42,8 +50,12 @@
       </table>
     </div>
    </div>
-   </div>
 
+ <?php else: ?>
+   <?php foreach($json->errors->error as $error): ?>
+     <?php echo $error->message; ?>
+   <?php endforeach; ?>
+ <?php endif; // !isset($json->errors) ?>
 
 
 </div>
