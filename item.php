@@ -7,11 +7,18 @@
   </div>
 
 
+   <?php
+     $url = "https://api.nal.usda.gov/ndb/reports/?ndbno=01009&type=b&format=json&api_key=DEMO_KEY";
+     $curl = curl_init();
+     curl_setopt($curl, CURLOPT_URL, $url);
+     curl_setopt($curl,CURLOPT_RETURNTRANSFER,true);
+     $result = curl_exec($curl);
+     curl_close($curl);
+     echo $result;
+   ?>
 
 
 </div>
-
-
 
 
 
