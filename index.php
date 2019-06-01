@@ -1,14 +1,4 @@
-<?php require_once('utils.php'); ?>
-
-<!DOCTYPE html>
-<html lang="en" dir="ltr">
-  <head>
-    <meta charset="utf-8">
-    <title>Food Composition</title>
-    <link rel="stylesheet" href="assets/vendor/bootstrap/css/bootstrap.min.css">
-  </head>
-  <body>
-
+<?php include_once('header.php'); ?>
     <div class="container mb-10">
        <div class="jumbotron mt-3 text-center">
           <h1>Search for food composition now</h1>
@@ -132,19 +122,4 @@
 </div>
 
 
-    <nav class="navbar fixed-bottom navbar-expand-sm navbar-dark bg-dark">
-        <a class="navbar-brand" href="">Food Composition</a>
-        <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-        </button>
-        <div class="collapse navbar-collapse" id="navbarCollapse">
-         <ul class="navbar-nav mr-auto">
-           <li class="nav-item">
-            <a class="nav-link" href="">Search</a>
-           </li>
-         </ul>
-         </div>
-     </nav>
-   <script src="assets/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
-  </body>
-</html>
+<?php include_once('footer.php'); ?>
